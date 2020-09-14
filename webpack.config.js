@@ -49,7 +49,8 @@ module.exports = {
         test: /\.css$/,
         use: [
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader'
+          'css-loader',
+          'postcss-loader'
         ]
       },
       {
@@ -85,11 +86,13 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(config.env)
     }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
-      inject: true,
-      favicon: 'public/favicon.ico'
-    })
+    isDev
+      ? new HtmlWebpackPlugin({
+          template: path.resolve(__dirname, 'public/index.html'),
+          inject: true,
+          favicon: 'public/favicon.ico'
+        })
+      : () => {}
   ],
   optimization: {
     minimize: isProd,
