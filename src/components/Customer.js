@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { DELETE_CUSTOMER } from '../apollo/mutations/deleteCustomer';
+import { DELETE_CUSTOMER } from '../apollo/mutations/customer/deleteCustomer';
 import { GET_CUSTOMERS_BY_SELLER } from '../apollo/queries/getCustomersBySeller';
 import Swal from 'sweetalert2';
 

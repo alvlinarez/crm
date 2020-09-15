@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_CUSTOMER } from '../apollo/queries/getCustomer';
-import { UPDATE_CUSTOMER } from '../apollo/mutations/updateCustomer';
+import { UPDATE_CUSTOMER } from '../apollo/mutations/customer/updateCustomer';
 import * as yup from 'yup';
 import Error from '../components/Error';
 import Swal from 'sweetalert2';

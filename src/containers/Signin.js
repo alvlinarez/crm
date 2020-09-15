@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { AUTH_USER } from '../apollo/mutations/authUser';
+import { AUTH_USER } from '../apollo/mutations/auth/authUser';
 import Layout from '../components/layout/Layout';
 import { useFormik } from 'formik';
 import * as yup from 'yup';

@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import Layout from '../components/layout/Layout';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { CREATE_USER } from '../apollo/mutations/createUser';
+import { CREATE_USER } from '../apollo/mutations/auth/createUser';
 
 const SignUp = () => {
   // Routing
