@@ -1,7 +1,14 @@
 import React from 'react';
+import Layout from '../components/layout/Layout';
 
 const Products = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Layout>
+        <h1 className="text-2xl text-gray-800 font-light">Products</h1>
+      </Layout>
+    </div>
+  );
 };
 
 export default Products;
