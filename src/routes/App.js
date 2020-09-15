@@ -15,6 +15,7 @@ import NewCustomer from '../containers/NewCustomer';
 import BestSellers from '../containers/BestSellers';
 import BestCustomers from '../containers/BestCustomers';
 import EditCustomer from '../containers/EditCustomer';
+import EditProduct from '../containers/EditProduct';
 
 const App = () => {
   const {
@@ -32,6 +33,11 @@ const App = () => {
         exact
         path="/products"
         component={isSignedIn ? Products : SignIn}
+      />
+      <Route
+        exact
+        path="/edit-product/:id"
+        component={isSignedIn ? EditProduct : SignIn}
       />
       <Route
         exact
