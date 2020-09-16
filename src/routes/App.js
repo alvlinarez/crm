@@ -4,7 +4,7 @@ import SignIn from '../containers/Signin';
 import SignUp from '../containers/SignUp';
 import Home from '../containers/Home';
 
-import '../styles/tailwind.css';
+//import '../styles/tailwind.css';
 import { IS_SIGNED_IN } from '../apollo/queries/isSignedIn';
 import { GET_USER } from '../apollo/queries/getUser';
 import { useQuery } from '@apollo/client';
@@ -19,9 +19,12 @@ import EditProduct from '../containers/Product/EditProduct';
 import NewProduct from '../containers/Product/NewProduct';
 
 const App = () => {
-  const {
-    data: { isSignedIn }
-  } = useQuery(IS_SIGNED_IN);
+  // const {
+  //   data: { isSignedIn }
+  // } = useQuery(IS_SIGNED_IN);
+
+  const isSignedIn =
+    typeof localStorage !== 'undefined' && !!localStorage.getItem('token');
 
   return (
     <Switch>

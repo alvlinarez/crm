@@ -27,10 +27,11 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink)
 });
 
-cache.writeData({
-  data: {
-    isSignedIn: !!localStorage.getItem('token')
-  }
-});
+// cache.writeData({
+//   data: {
+//     isSignedIn:
+//       typeof localStorage !== 'undefined' && !!localStorage.getItem('token')
+//   }
+// });
 
 export default client;
