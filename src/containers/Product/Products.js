@@ -1,11 +1,11 @@
 import React from 'react';
-import Layout from '../components/layout/Layout';
+import Layout from '../../components/layout/Layout';
 import { useQuery } from '@apollo/client';
-import { GET_PRODUCTS } from '../apollo/queries/getProducts';
-import Error from '../components/Error';
+import { GET_PRODUCTS } from '../../apollo/queries/getProducts';
+import Error from '../../components/Error';
 import { Link } from 'react-router-dom';
-import Loading from '../components/loading/Loading';
-import Product from '../components/Product';
+import Loading from '../../components/loading/Loading';
+import Product from '../../components/Product';
 
 const Products = () => {
   const { data, loading, error } = useQuery(GET_PRODUCTS);

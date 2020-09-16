@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Layout from '../components/layout/Layout';
+import Layout from '../../components/layout/Layout';
 import { useMutation } from '@apollo/client';
-import { CREATE_CUSTOMER } from '../apollo/mutations/customer/createCustomer';
-import { GET_CUSTOMERS_BY_SELLER } from '../apollo/queries/getCustomersBySeller';
+import { CREATE_CUSTOMER } from '../../apollo/mutations/customer/createCustomer';
+import { GET_CUSTOMERS_BY_SELLER } from '../../apollo/queries/getCustomersBySeller';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import showMsg from '../../utils/showMsg';
 
 const NewCustomer = () => {
   const history = useHistory();
@@ -67,19 +68,11 @@ const NewCustomer = () => {
     }
   });
 
-  const showMsg = () => {
-    return (
-      <div className="bg-white py-2 px-3 w-full my-3 max-w-sm text-center mx-auto">
-        <p>{msg}</p>
-      </div>
-    );
-  };
-
   return (
     <div>
       <Layout>
         <h1 className="text-2xl text-gray-800 font-light">New Customer</h1>
-        {msg && showMsg()}
+        {msg && showMsg(msg)}
         <div className="flex justify-center mt-5">
           <div className="w-full max-w-lg">
             <form

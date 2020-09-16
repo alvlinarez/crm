@@ -6,6 +6,7 @@ import Layout from '../components/layout/Layout';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import client from '../apollo/config';
+import showMsg from '../utils/showMsg';
 
 const SignIn = () => {
   // Mutation to SignIn
@@ -44,7 +45,6 @@ const SignIn = () => {
           window.location.href = '/';
         }, 1000);
       } catch (e) {
-        console.log(e);
         setMsg(e.message.replace('Graphql error: ', ''));
         setTimeout(() => {
           setMsg(null);
@@ -53,17 +53,11 @@ const SignIn = () => {
     }
   });
 
-  const showMsg = () => (
-    <div className="bg-white py-2 px-3 w-full my-3 max-w-sm text-center mx-auto">
-      <p>{msg}</p>
-    </div>
-  );
-
   return (
     <>
       <Layout auth>
         <h1 className="text-center text-2xl text-white font-light">Sign In</h1>
-        {msg && showMsg()}
+        {msg && showMsg(msg)}
         <div className="flex justify-center mt-5">
           <div className="w-full max-w-sm">
             <form

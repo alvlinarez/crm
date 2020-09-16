@@ -28,6 +28,13 @@ const OrderState = ({ children }) => {
 
   // Modify Products
   const addProducts = (selectedProducts) => {
+    // let newStateProducts = selectedProducts.map((product) => {
+    //   return {
+    //     product,
+    //     quantity: 0
+    //   };
+    // });
+
     let newStateProducts;
     if (state.products.length > 0) {
       // Code to avoid the elimination of quantity param in product object
@@ -36,16 +43,20 @@ const OrderState = ({ children }) => {
       // to the first one
       newStateProducts = selectedProducts.map((product) => {
         const orderProduct = state.products.find(
-          (productState) => productState.id === product.id
+          (productState) => productState.product.id === product.id
         );
-        return {
-          ...product,
-          ...orderProduct
-        };
+        return { product: { ...product, ...orderProduct }, quantity: 0 };
       });
     } else {
-      newStateProducts = selectedProducts;
+      //newStateProducts = selectedProducts;
+      newStateProducts = selectedProducts.map((product) => {
+        return {
+          product,
+          quantity: 0
+        };
+      });
     }
+
     dispatch({
       type: SELECT_PRODUCT,
       payload: newStateProducts
@@ -53,10 +64,10 @@ const OrderState = ({ children }) => {
   };
 
   // Modify products quantity
-  const quantityProducts = (newProduct) => {
+  const changeQuantity = (quantityProduct) => {
     dispatch({
       type: QUANTITY_PRODUCT,
-      payload: newProduct
+      payload: quantityProduct
     });
   };
 
@@ -75,7 +86,7 @@ const OrderState = ({ children }) => {
         total: state.total,
         addCustomer,
         addProducts,
-        quantityProducts,
+        changeQuantity,
         setTotal
       }}
     >

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Layout from '../components/layout/Layout';
+import Layout from '../../components/layout/Layout';
 import { useMutation, useQuery } from '@apollo/client';
-import { GET_CUSTOMER } from '../apollo/queries/getCustomer';
-import { UPDATE_CUSTOMER } from '../apollo/mutations/customer/updateCustomer';
+import { GET_CUSTOMER } from '../../apollo/queries/getCustomer';
+import { UPDATE_CUSTOMER } from '../../apollo/mutations/customer/updateCustomer';
 import * as yup from 'yup';
-import Error from '../components/Error';
+import Error from '../../components/Error';
 import Swal from 'sweetalert2';
-import Loading from '../components/loading/Loading';
+import Loading from '../../components/loading/Loading';
 import { useFormik } from 'formik';
-import { GET_CUSTOMERS_BY_SELLER } from '../apollo/queries/getCustomersBySeller';
+import { GET_CUSTOMERS_BY_SELLER } from '../../apollo/queries/getCustomersBySeller';
+import showMsg from '../../utils/showMsg';
 
 const EditCustomer = ({ match }) => {
   const history = useHistory();
@@ -108,18 +109,10 @@ const EditCustomer = ({ match }) => {
     return <Error />;
   }
 
-  const showMsg = () => {
-    return (
-      <div className="bg-white py-2 px-3 w-full my-3 max-w-sm text-center mx-auto">
-        <p>{msg}</p>
-      </div>
-    );
-  };
-
   return (
     <Layout>
       <h1 className="text-2xl text-gray-800 font-light">Edit Customer</h1>
-      {msg && showMsg()}
+      {msg && showMsg(msg)}
       <div className="flex justify-center mt-5">
         <div className="w-full max-w-lg">
           {loading ? (

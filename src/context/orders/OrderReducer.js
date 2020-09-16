@@ -21,14 +21,16 @@ export default (state, action) => {
       return {
         ...state,
         products: state.products.map((product) =>
-          product.id === action.payload.id ? action.payload : product
+          product.product.id === action.payload.product.id
+            ? { ...product, quantity: action.payload.quantity }
+            : product
         )
       };
     case SET_TOTAL:
       return {
         ...state,
         total: state.products.reduce(
-          (sum, product) => (sum += product.price * product.quantityOrder),
+          (sum, product) => (sum += product.product.price * product.quantity),
           0
         )
       };

@@ -5,6 +5,7 @@ import Layout from '../components/layout/Layout';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { CREATE_USER } from '../apollo/mutations/auth/createUser';
+import showMsg from '../utils/showMsg';
 
 const SignUp = () => {
   // Routing
@@ -60,17 +61,11 @@ const SignUp = () => {
     }
   });
 
-  const showMsg = () => (
-    <div className="bg-white py-2 px-3 w-full my-3 max-w-sm text-center mx-auto">
-      <p>{msg}</p>
-    </div>
-  );
-
   return (
     <>
       <Layout auth>
         <h1 className="text-center text-2xl text-white font-light">Sign Up</h1>
-        {msg && showMsg()}
+        {msg && showMsg(msg)}
         <div className="flex justify-center mt-5">
           <div className="w-full max-w-sm">
             <form
