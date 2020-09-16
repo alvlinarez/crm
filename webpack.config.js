@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
 
 const config = require('./server/config');
 
@@ -82,17 +81,14 @@ module.exports = {
           filename: 'assets/css/[name].[contenthash:8].chunk.css'
         })
       : () => {},
-    isProd ? new ManifestPlugin() : () => {},
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(config.env)
     }),
-    isDev
-      ? new HtmlWebpackPlugin({
-          template: path.resolve(__dirname, 'public/index.html'),
-          inject: true,
-          favicon: 'public/favicon.ico'
-        })
-      : () => {}
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+      inject: true,
+      favicon: 'public/favicon.ico'
+    })
   ],
   optimization: {
     minimize: isProd,
@@ -115,23 +111,20 @@ module.exports = {
       new OptimizeCssAssetsPlugin()
     ],
     splitChunks: {
-      chunks: 'all',
-      minSize: 0,
-      maxInitialRequests: 20,
-      maxAsyncRequests: 20,
+      chunks: 'async',
       cacheGroups: {
         vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name(module, chunks, cacheGroupKey) {
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1];
-            return `${cacheGroupKey}.${packageName.replace('@', '')}`;
+          name: 'vendors',
+          reuseExistingChunk: true,
+          priority: 1,
+          enforce: true,
+          test(module, chunks) {
+            const name = module.nameForCondition && module.nameForCondition();
+            return chunks.some(
+              (chunk) =>
+                chunk.name !== 'vendors' && /[\\/]node_modules[\\/]/.test(name)
+            );
           }
-        },
-        common: {
-          minChunks: 2,
-          priority: -10
         }
       }
     },
