@@ -4,7 +4,8 @@ import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4001',
+  //uri: 'http://localhost:4001',
+  uri: 'https://alg-crm-server.herokuapp.com',
   fetch
 });
 
