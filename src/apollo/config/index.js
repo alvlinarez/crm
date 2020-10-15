@@ -5,7 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const httpLink = createHttpLink({
   //uri: 'http://localhost:4001',
-  uri: 'https://alg-crm-server.herokuapp.com',
+  uri: 'https://crm.alvlinarez.dev/crm-server',
   fetch
 });
 
