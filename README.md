@@ -8,6 +8,8 @@ Some features used:
 
 [See app in production](https://alg-crm.herokuapp.com)
 
+[See api](https://github.com/alvlinarez/crm-server)
+
 ## Scripts
 
 * `npm install` to install dependencies
